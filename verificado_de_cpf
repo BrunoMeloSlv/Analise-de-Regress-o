@@ -1,0 +1,63 @@
+'''
+CPF = 168.995.350-09 16899535009 03900188564
+---------------------------------------------
+1 * 10 = 10             1 * 11 = 11
+6 *  9 = 54             6 * 10 = 60
+8 *  8 = 64             8 *  9 = 72
+9 *  7 = 63             9 *  8 = 72
+9 *  6 = 54             9 *  7 = 63
+5 *  5 = 25             5 *  6 = 30
+3 *  4 = 12             3 *  5 = 15
+5 *  3 = 15             5 *  4 = 20
+0 *  2 =  0             0 *  3 =  0
+                        0 *  2 =  0
+          297                     343
+11 - (297 % 11) = 11            11 -(343 % 11) = 9
+11 > 9 = 0                      Digito 2 = 9
+Digito 1 = 0
+'''
+while True:
+    cpf = input('Digite um CPF: ')
+    Novo_CPF = cpf[:-2]
+
+    if not cpf.isnumeric():
+        print('Você precisa digitar somente números')
+    else:
+        Total_a = (
+                (int(cpf[0]) * 10) +
+                (int(cpf[1])  * 9) +
+                (int(cpf[2])  * 8) +
+                (int(cpf[3])  * 7) +
+                (int(cpf[4])  * 6) +
+                (int(cpf[5])  * 5) +
+                (int(cpf[6])  * 4) +
+                (int(cpf[7])  * 3) +
+                (int(cpf[8])  * 2))
+        d10 = 11 - (Total_a % 11)
+        if d10 > 9:
+            d10 = 0
+        else:
+            pass
+        Total_b = (
+                    (int(cpf[0]) * 11) +
+                    (int(cpf[1]) * 10) +
+                    (int(cpf[2]) * 9) +
+                    (int(cpf[3]) * 8) +
+                    (int(cpf[4]) * 7) +
+                    (int(cpf[5]) * 6) +
+                    (int(cpf[6]) * 5) +
+                    (int(cpf[7]) * 4) +
+                    (int(cpf[8]) * 3) +
+                    (int(d10) * 2))
+
+        d11 = 11 -(Total_b % 11)
+
+        if d11 > 9:
+            d11 = 0
+        else:
+            pass
+
+        if d10 == int(cpf[9]) and int(cpf[10]) == d11:
+            print(f'CPF "{cpf}" válido')
+        else:
+            print(f'CPF "{cpf}" inválido')
